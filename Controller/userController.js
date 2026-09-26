@@ -31,7 +31,7 @@ exports.login = async (req,res) =>{
         if (!userExist ) return res.status(500).json({errors:true,message:"email or password is invalied"})
 
            const comparePassword = await bcrypt.compare(req.body.password,userExist.password)
-           if (!comparePassword) return res.status(500).json({error:true,message:"email or password is Invalied"})
+           if (!comparePassword) return res.status(500).json({errors:true,message:"email or password is Invalied"})
 
            const token = await jwt.sign({id:userExist._id,role:userExist.role},process.env.SEC)
             
